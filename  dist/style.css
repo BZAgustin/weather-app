@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: darkslategray;
+}
+/* -------------------- HEADER --------------------  */
+
+header {
+  padding: 2rem;
+  background-color: aquamarine;
+  text-align: center;
+}
+
+/* -------------------- MAIN --------------------  */
+
+section {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+section input {
+  font-size: 2rem;
+}
+
+main {
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+/* -------------------- LOCATION --------------------  */
+
+.location {
+  font-size: 2rem;
+  padding: 24px;
+  background-color: darkcyan;
+}
+
+/* -------------------- WEATHER INFO --------------------  */
+
+.container {
+  background-color: cadetblue;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.weather-info { 
+  font-size: 2rem;
+  text-align: center;
+  padding: 12px;
+}
+
+#temperature {
+  grid-column: 1 / 3;
+}
