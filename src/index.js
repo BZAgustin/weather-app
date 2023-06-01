@@ -1,8 +1,10 @@
 import Weather from "./weather";
 import DOM from "./display";
+import iconManager from "./iconManager";
 
 const myWeather = new Weather();
 const display = DOM();
+const icons = iconManager();
 
 async function getLocationWeather(location) {
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=223244cbdba14658867150217233105&q=${location}`, {mode: 'cors'});
@@ -27,24 +29,26 @@ async function updateWeather(location) {
   myWeather.clouds = weatherObject.current.cloud;
   myWeather.thermicCelsius = weatherObject.current.feelslike_c;
   myWeather.thermicFahrenheit = weatherObject.current.feelslike_f;
+  myWeather.isDay = weatherObject.current.is_day;
 }
 
-function updateDisplay() {
-  display.updateCity(myWeather.location);
-  display.updateCountry(myWeather.country);
-  display.updateTemperature(`${myWeather.celsius}°`);
-  display.updateWind(`${myWeather.windKph}kph`);
-  display.updatePrecipitations(`${myWeather.precipMm}mm`);
-  display.updateClouds(`${myWeather.clouds}%`);
+function updateIcons(time) {
+  icons.setDaytime(time);
 }
 
-updateWeather('Cordoba');
+async function newWeather(newLocation) {
+  await updateWeather(newLocation);
+  display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.windKph} kph`,
+               `${myWeather.precipMm}mm`, `${myWeather.humidity}%`, `${myWeather.clouds}%`);
+  updateIcons(myWeather.isDay);
+}
 
-display.inputSearch.addEventListener('keypress', async (e) => {
+newWeather('Cordoba');
+
+display.inputSearch.addEventListener('keypress', (e) => {
   if(e.key === 'Enter') {
     e.preventDefault();
-    await updateWeather(display.getInput());
-    updateDisplay();
+    newWeather(display.getInput());
   }
-})
+});
 
