@@ -28,20 +28,29 @@ const DOM = () => {
     wind.innerHTML = newWind;
   }
 
-  function updateHumidity(newHumidity) {
-    humidity.innerHTML = newHumidity;
-  }
-
   function updatePrecipitations(newPrecip) { 
     precipitations.innerHTML = newPrecip;
+  }
+
+  function updateHumidity(newHumidity) {
+    humidity.innerHTML = newHumidity;
   }
 
   function updateClouds(newClouds) {
     clouds.innerHTML = newClouds;
   }
 
-  return { inputSearch, getInput, updateCity, updateCountry, updateTemperature, 
-           updateWind, updateHumidity, updatePrecipitations, updateClouds }
+  function refresh(myCity, myCountry, myTemp, myWind, myPrecs, myHumidity, myClouds) {
+    updateCity(myCity);
+    updateCountry(myCountry);
+    updateTemperature(myTemp);
+    updateWind(myWind);
+    updatePrecipitations(myPrecs);
+    updateHumidity(myHumidity);
+    updateClouds(myClouds);
+  }
+
+  return { inputSearch, getInput, refresh }
 }
 
 export default DOM;
