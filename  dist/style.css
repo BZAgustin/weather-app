@@ -11,6 +11,11 @@ html, body {
 body {
   background-color: darkslategray;
 }
+
+img {
+  width: 48px;
+  height: 48px;
+}
 /* -------------------- HEADER --------------------  */
 
 header {
@@ -51,18 +56,23 @@ main {
 /* -------------------- WEATHER INFO --------------------  */
 
 .container {
+  width: 50%;
   background-color: cadetblue;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 
-.weather-info { 
+.weather-info {
   font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   text-align: center;
   padding: 12px;
 }
 
-#temperature {
+#temperature-container {
   grid-column: 1 / 3;
 }
