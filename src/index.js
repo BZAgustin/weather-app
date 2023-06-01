@@ -1,9 +1,8 @@
 import Weather from "./weather";
-
-// const inputForm = document.getElementById('form-search');
-const inputSearch = document.getElementById('input-search');
+import DOM from "./display";
 
 const myWeather = new Weather();
+const display = DOM();
 
 async function getLocationWeather(location) {
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=223244cbdba14658867150217233105&q=${location}`, {mode: 'cors'});
@@ -30,13 +29,22 @@ async function updateWeather(location) {
   myWeather.thermicFahrenheit = weatherObject.current.feelslike_f;
 }
 
+function updateDisplay() {
+  display.updateCity(myWeather.location);
+  display.updateCountry(myWeather.country);
+  display.updateTemperature(`${myWeather.celsius}°`);
+  display.updateWind(`${myWeather.windKph}kph`);
+  display.updatePrecipitations(`${myWeather.precipMm}mm`);
+  display.updateClouds(`${myWeather.clouds}%`);
+}
+
 updateWeather('Cordoba');
 
-inputSearch.addEventListener('keypress', async (e) => {
+display.inputSearch.addEventListener('keypress', async (e) => {
   if(e.key === 'Enter') {
     e.preventDefault();
-    await updateWeather(inputSearch.value);
-    console.log(myWeather);
+    await updateWeather(display.getInput());
+    updateDisplay();
   }
 })
 
