@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/BZAgustin/weather-app/issues"
   },
-  "homepage": "https://github.com/BZAgustin/weather-app#readme"
+  "homepage": "https://github.com/BZAgustin/weather-app#readme",
+  "devDependencies": {
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
+  }
 }
