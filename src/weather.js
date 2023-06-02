@@ -2,7 +2,7 @@
 export default class Weather {
   constructor(location, country, celsius, fahrenheit, windKph, 
               windMph, windDir, precipMm, precipIn, humidity, 
-              clouds, thermicCelsius, thermicFahrenheit, isDay) {
+              clouds, isDay, condition) {
     this._location = location;
     this._country = country;
     this._celsius = celsius;
@@ -14,9 +14,8 @@ export default class Weather {
     this._precipIn = precipIn;
     this._humidity = humidity;
     this._clouds = clouds;
-    this._thermicCelsius = thermicCelsius;
-    this._thermicFahrenheit = thermicFahrenheit;
     this._isDay = isDay;
+    this._condition = condition;
   }
 
   get location() {
@@ -107,27 +106,19 @@ export default class Weather {
     this._clouds = amount;
   }
 
-  get thermicCelsius() {
-    return this._thermicCelsius
-  }
-
-  set thermicCelsius(temperature) {
-    this._thermicCelsius = temperature;
-  }
-
-  get thermicFahrenheit() {
-    return this._thermicFahrenheit
-  }
-
-  set thermicFahrenheit(temperature) {
-    this._thermicFahrenheit = temperature;
-  }
-
   get isDay() {
     return this._isDay;
   }
 
   set isDay(time) {
     this._isDay = time;
+  }
+
+  get condition() {
+    return this._condition;
+  }
+
+  set condition(condition) {
+    this._condition = condition;
   }
 }
