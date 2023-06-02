@@ -15,11 +15,13 @@ async function getLocationWeather(location) {
 
 async function updateWeather(location) {
   const weatherObject = await getLocationWeather(location);
+  const countryTime = `${new Date(weatherObject.location.localtime).getHours().toString().padStart(2, '0')}:${new Date(weatherObject.location.localtime).getMinutes().toString().padStart(2, '0')}`;
 
   myWeather.location = weatherObject.location.name;
   myWeather.country = weatherObject.location.country;
   myWeather.celsius = weatherObject.current.temp_c;
   myWeather.fahrenheit = weatherObject.current.temp_f;
+  myWeather.time = countryTime;
   myWeather.windKph = weatherObject.current.wind_kph;
   myWeather.windMph = weatherObject.current.wind_mph;
   myWeather.windDir = weatherObject.current.wind_dir;
@@ -38,7 +40,7 @@ function updateIcons(time, wind) {
 
 async function newWeather(newLocation) {
   await updateWeather(newLocation);
-  display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.windKph}`,
+  display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.time} HS`,`${myWeather.windKph}`,
                `${myWeather.precipMm}mm`, `${myWeather.humidity}%`, `${myWeather.clouds}%`, `(${myWeather.condition})`);
   updateIcons(myWeather.isDay, myWeather.windDir);
 }
