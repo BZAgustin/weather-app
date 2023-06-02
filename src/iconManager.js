@@ -9,7 +9,9 @@ const iconManager = () => {
     south: './assets/S.png',
     southWest: './assets/SW.png',
     west: './assets/W.png',
-    northWest: './assets/NW.png'
+    northWest: './assets/NW.png',
+    toggleLeft: './assets/toggleLeft.png',
+    toggleRight: './assets/toggleRight.png'
   }
 
   const daytime = document.getElementById('daytime');
