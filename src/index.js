@@ -19,18 +19,18 @@ async function updateWeather(location) {
 
   myWeather.location = weatherObject.location.name;
   myWeather.country = weatherObject.location.country;
+  myWeather.time = countryTime;
+  myWeather.humidity = weatherObject.current.humidity;
+  myWeather.clouds = weatherObject.current.cloud;
+  myWeather.isDay = weatherObject.current.is_day;
+  myWeather.condition = weatherObject.current.condition.text;
   myWeather.celsius = weatherObject.current.temp_c;
   myWeather.fahrenheit = weatherObject.current.temp_f;
-  myWeather.time = countryTime;
   myWeather.windKph = weatherObject.current.wind_kph;
   myWeather.windMph = weatherObject.current.wind_mph;
   myWeather.windDir = weatherObject.current.wind_dir;
   myWeather.precipMm = weatherObject.current.precip_mm;
   myWeather.precipIn = weatherObject.current.precip_in;
-  myWeather.humidity = weatherObject.current.humidity;
-  myWeather.clouds = weatherObject.current.cloud;
-  myWeather.isDay = weatherObject.current.is_day;
-  myWeather.condition = weatherObject.current.condition.text;
 }
 
 function updateIcons(time, wind) {
@@ -40,8 +40,16 @@ function updateIcons(time, wind) {
 
 async function newWeather(newLocation) {
   await updateWeather(newLocation);
-  display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.time} HS`,`${myWeather.windKph}`,
-               `${myWeather.precipMm}mm`, `${myWeather.humidity}%`, `${myWeather.clouds}%`, `(${myWeather.condition})`);
+  if(myWeather.system === 0) {
+    display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.time} HS`,
+    `${myWeather.windKph} KPH`, `${myWeather.precipMm}mm`, `${myWeather.humidity}%`, `${myWeather.clouds}%`, 
+    `(${myWeather.condition})`);
+  } else {
+    display.refresh(myWeather.location, myWeather.country, `${myWeather.fahrenheit}°F`, `${myWeather.time} HS`,
+    `${myWeather.windMph} MPH`, `${myWeather.precipIn}in`, `${myWeather.humidity}%`, `${myWeather.clouds}%`, 
+    `(${myWeather.condition})`);
+  }
+
   updateIcons(myWeather.isDay, myWeather.windDir);
 }
 
@@ -54,3 +62,14 @@ display.inputSearch.addEventListener('keypress', (e) => {
   }
 });
 
+display.toggleSystem.addEventListener('click', () => {
+  if(myWeather.system === 0) {
+    myWeather.system = 1;
+    display.toggleSystem.src = icons.myIcons.toggleRight;
+  } else {
+    myWeather.system = 0;
+    display.toggleSystem.src = icons.myIcons.toggleLeft;
+  }
+
+  newWeather(myWeather.location);
+});
