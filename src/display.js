@@ -7,6 +7,7 @@ const DOM = () => {
   const humidity = document.getElementById('humidity');
   const precipitations = document.getElementById('precipitations');
   const clouds = document.getElementById('clouds');
+  const conditionText = document.getElementById('condition-text');
 
   function getInput() {
     return inputSearch.value;
@@ -40,7 +41,11 @@ const DOM = () => {
     clouds.innerHTML = newClouds;
   }
 
-  function refresh(myCity, myCountry, myTemp, myWind, myPrecs, myHumidity, myClouds) {
+  function updateCondition(newCondition) {
+    conditionText.innerHTML = newCondition;
+  }
+
+  function refresh(myCity, myCountry, myTemp, myWind, myPrecs, myHumidity, myClouds, myCondition) {
     updateCity(myCity);
     updateCountry(myCountry);
     updateTemperature(myTemp);
@@ -48,6 +53,7 @@ const DOM = () => {
     updatePrecipitations(myPrecs);
     updateHumidity(myHumidity);
     updateClouds(myClouds);
+    updateCondition(myCondition);
   }
 
   return { inputSearch, getInput, refresh }
