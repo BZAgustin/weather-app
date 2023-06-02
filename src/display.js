@@ -10,6 +10,7 @@ const DOM = () => {
   const conditionText = document.getElementById('condition-text');
   const countryTime = document.getElementById('country-time');
   const toggleSystem = document.getElementById('toggle-system');
+  const error = document.getElementById('error-message');
 
   function getInput() {
     return inputSearch.value;
@@ -63,7 +64,16 @@ const DOM = () => {
     updateCondition(myCondition);
   }
 
-  return { inputSearch, toggleSystem, getInput, refresh }
+  function showError(err) {
+    error.innerHTML = 'Location not found'
+    console.log(err);
+  }
+
+  function clearError() {
+    error.innerHTML = ''
+  }
+
+  return { inputSearch, toggleSystem, getInput, refresh, showError, clearError }
 }
 
 export default DOM;
