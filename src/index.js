@@ -27,20 +27,20 @@ async function updateWeather(location) {
   myWeather.precipIn = weatherObject.current.precip_in;
   myWeather.humidity = weatherObject.current.humidity;
   myWeather.clouds = weatherObject.current.cloud;
-  myWeather.thermicCelsius = weatherObject.current.feelslike_c;
-  myWeather.thermicFahrenheit = weatherObject.current.feelslike_f;
   myWeather.isDay = weatherObject.current.is_day;
+  myWeather.condition = weatherObject.current.condition.text;
 }
 
-function updateIcons(time) {
+function updateIcons(time, wind) {
   icons.setDaytime(time);
+  icons.setWindDirection(wind);
 }
 
 async function newWeather(newLocation) {
   await updateWeather(newLocation);
-  display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.windKph} kph`,
-               `${myWeather.precipMm}mm`, `${myWeather.humidity}%`, `${myWeather.clouds}%`);
-  updateIcons(myWeather.isDay);
+  display.refresh(myWeather.location, myWeather.country, `${myWeather.celsius}°C`, `${myWeather.windKph}`,
+               `${myWeather.precipMm}mm`, `${myWeather.humidity}%`, `${myWeather.clouds}%`, `(${myWeather.condition})`);
+  updateIcons(myWeather.isDay, myWeather.windDir);
 }
 
 newWeather('Cordoba');
