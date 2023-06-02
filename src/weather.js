@@ -1,12 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 export default class Weather {
-  constructor(location, country, celsius, fahrenheit, windKph, 
-              windMph, windDir, precipMm, precipIn, humidity, 
-              clouds, isDay, condition) {
+  constructor(location, country, celsius, fahrenheit, time, windKph, windMph,
+              windDir, precipMm, precipIn, humidity, clouds, isDay, condition) {
+
     this._location = location;
     this._country = country;
     this._celsius = celsius;
     this._fahrenheit = fahrenheit;
+    this._time = time;
     this._windKph = windKph;
     this._windMph = windMph;
     this._windDir = windDir;
@@ -48,6 +49,14 @@ export default class Weather {
 
   set fahrenheit(temperature) {
     this._fahrenheit = temperature;
+  }
+
+  get time() {
+    return this._time;
+  }
+
+  set time(newTime) {
+    this._time = newTime;
   }
 
   get windKph() {
