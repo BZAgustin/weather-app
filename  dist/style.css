@@ -50,8 +50,16 @@ header {
   display: inline-block;
 }
 
+#settings:hover {
+  cursor: pointer;
+}
+
 .settings-menu:hover .dropdown {
   display: block;
+}
+
+#toggle-system:hover {
+  cursor: pointer;
 }
 
 /* -------------------- MAIN --------------------  */
