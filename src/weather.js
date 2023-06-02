@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 export default class Weather {
   constructor(location, country, celsius, fahrenheit, time, windKph, windMph,
-              windDir, precipMm, precipIn, humidity, clouds, isDay, condition) {
+              windDir, precipMm, precipIn, humidity, clouds, isDay, condition, system = 0) {
 
     this._location = location;
     this._country = country;
@@ -17,6 +17,7 @@ export default class Weather {
     this._clouds = clouds;
     this._isDay = isDay;
     this._condition = condition;
+    this._system = system;
   }
 
   get location() {
@@ -129,5 +130,13 @@ export default class Weather {
 
   set condition(condition) {
     this._condition = condition;
+  }
+
+  get system() {
+    return this._system;
+  }
+
+  set system(newSystem) {
+    this._system = newSystem;
   }
 }
