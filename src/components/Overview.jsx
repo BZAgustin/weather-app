@@ -1,4 +1,9 @@
-export default function Overview({ location, weather }) {
+import { format } from "date-fns"
+
+export default function Overview({ location, weather, hourly }) {
+  const dayHours = [hourly.hour[7], hourly.hour[12], 
+                    hourly.hour[18], hourly.hour[0]]
+
   return(
     <section className="dashboard flex flex-col justify-center bg-red-400 col-span-7 p-5">
       <div className="flex justify-center">
@@ -7,7 +12,7 @@ export default function Overview({ location, weather }) {
           <div className="flex flex-col gap-2 text-center">
             <h1 className="text-3xl">{weather.temp_c}° C</h1>
             <h3 className="text-xl">{location.region} - {location.country}</h3>
-            <h3 className="text-xs">{location.localtime}</h3>
+            <h3 className="text-xs">{format(location.localtime, "eeee do")}</h3>
           </div>
         </div>
       </div>
@@ -17,25 +22,25 @@ export default function Overview({ location, weather }) {
       <div className="flex justify-around">
         <div className="flex flex-col items-center text-center">
           <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-16" />
-          <h2 className="text-2xl">24° C</h2>
+          <h2 className="text-2xl">{dayHours[0].temp_c}° C</h2>
           <h4>Morning</h4>
         </div>
 
         <div className="flex flex-col items-center text-center">
           <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-16" />
-          <h2 className="text-2xl">27° C</h2>
+          <h2 className="text-2xl">{dayHours[1].temp_c}° C</h2>
           <h4>Noon</h4>
         </div>
 
         <div className="flex flex-col items-center text-center">
           <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-16" />
-          <h2 className="text-2xl">23° C</h2>
+          <h2 className="text-2xl">{dayHours[2].temp_c}° C</h2>
           <h4>Afternoon</h4>
         </div>
 
         <div className="flex flex-col items-center text-center">
           <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-16" />
-          <h2 className="text-2xl">20° C</h2>
+          <h2 className="text-2xl">{dayHours[3].temp_c}° C</h2>
           <h4>Night</h4>
         </div>
       </div>

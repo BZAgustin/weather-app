@@ -10,7 +10,7 @@ function App() {
   const [hourly, setHourly] = useState(null)
   const [forecast, setForecast] = useState(null)
   const [alerts, setAlerts] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const key = '223244cbdba14658867150217233105'
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function App() {
         setLocation(data.location)
         setCurrentWeather(data.current)
         setHourly(data.forecast.forecastday[0])
-        setForecast(data.forecast)
+        setForecast(data.forecast.forecastday)
         setAlerts(data.alerts.alert)
         setLoading(false)
       } catch(error) {
