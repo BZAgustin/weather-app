@@ -22,24 +22,6 @@ export default function Weekly() {
           <h2 className="text-2xl">23° C</h2>
           <h4>Wednesday</h4>
         </div>
-
-        <div className="flex flex-col items-center text-center gap-2">
-          <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-32" />
-          <h2 className="text-2xl">20° C</h2>
-          <h4>Thursday</h4>
-        </div>
-
-        <div className="flex flex-col items-center text-center gap-2">
-          <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-32" />
-          <h2 className="text-2xl">20° C</h2>
-          <h4>Friday</h4>
-        </div>
-
-        <div className="flex flex-col items-center text-center gap-2">
-          <img src="/images/icons/weather/day/113.svg" alt="Weather Morning" className="h-auto w-32" />
-          <h2 className="text-2xl">20° C</h2>
-          <h4>Saturday</h4>
-        </div>
       </div>
     </section>
   )
